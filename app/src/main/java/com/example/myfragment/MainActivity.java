@@ -10,35 +10,37 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.example.myfragment.databinding.ActivityMainBinding;
+
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button button1,button2;
-    FrameLayout fragmentContainer;
+    ActivityMainBinding activityMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(activityMainBinding.getRoot());
 
-        getSupportActionBar().hide();
+        placeFragmentToContainer(new Fragment1());
 
-        button1 = findViewById(R.id.button1);
-        button2 = findViewById(R.id.button2);
-        fragmentContainer = findViewById(R.id.fragmentContainer);
+        activityMainBinding.bottomNavigation.setOnItemSelectedListener(item->{
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                placeFragmentToContainer(new Fragment1());
+            switch (item.getItemId()){
+                case R.id.home:
+                    placeFragmentToContainer(new Fragment1());
+                    break;
+                case R.id.favourite:
+                    placeFragmentToContainer(new Fragment2());
+                    break;
             }
+
+            return true;
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                placeFragmentToContainer(new Fragment2());
-            }
-        });
+
 
     }
 
@@ -50,4 +52,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+
 }
