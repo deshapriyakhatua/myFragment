@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         fragmentContainer = findViewById(R.id.fragmentContainer);
