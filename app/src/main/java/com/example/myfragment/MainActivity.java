@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
 
+        getSupportActionBar().hide();
+
         placeFragmentToContainer(new Fragment1());
 
         activityMainBinding.bottomNavigation.setOnItemSelectedListener(item->{
